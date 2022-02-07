@@ -1,0 +1,21 @@
+{% trans_default_domain 'sfs_translation' %}
+
+{% for translation in entities %}
+    <tr>
+        <td>{{ translation.key }}</td>
+        <td>{{ translation.domain }}</td>
+        <td>{{ translation.defaultMessage.locale|default('') }}</td>
+        <td>{{ translation.defaultMessage.message|default('') }}</td>
+        <td>{{ translation.translationMessages|map(tm => tm.locale)|join(',') }}</td>
+
+        <td>
+{#            {% if is_granted('ROLE_SFS_TRANSLATION_ADMIN_TRANSLATIONS_DETAILS', translation) %}#}
+{#                <a href="{{ url('sfs_translation_admin_translations_read', {'translation':translation}) }}" class="ml-2 text-nowrap">{{ 'admin_translations.list.actions.details.button'|trans }} <span class="mdi mdi-18px mdi-eye-outline align-middle"></span></a>#}
+{#            {% endif %}#}
+
+{#            {% if is_granted('ROLE_SFS_TRANSLATION_ADMIN_TRANSLATIONS_UPDATE', translation) %}#}
+{#                <a href="{{ url('sfs_translation_admin_translations_update', {'translation':translation}) }}" class="ml-2 text-nowrap">{{ 'admin_translations.list.actions.update.button'|trans }} <span class="mdi mdi-18px mdi-square-edit-outline align-middle"></span></a>#}
+{#            {% endif %}#}
+        </td>
+    </tr>
+{% endfor %}

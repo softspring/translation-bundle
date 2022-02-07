@@ -1,0 +1,65 @@
+parameters:
+    sfs_translation.admin.translations.list_view: '@@SfsTranslation/admin/translations/list.html.twig'
+    sfs_translation.admin.translations.list_page_view: '@@SfsTranslation/admin/translations/list-page.html.twig'
+    sfs_translation.admin.translations.create_view: '@@SfsTranslation/admin/translations/create.html.twig'
+    sfs_translation.admin.translations.update_view: '@@SfsTranslation/admin/translations/update.html.twig'
+    sfs_translation.admin.translations.delete_view: '@@SfsTranslation/admin/translations/delete.html.twig'
+    sfs_translation.admin.translations.read_view: '@@SfsTranslation/admin/translations/read.html.twig'
+
+services:
+    sfs_translation.admin.translation.controller:
+        class: Softspring\CrudlBundle\Controller\CrudlController
+        public: true
+        calls:
+            - { method: setContainer, arguments: ['@service_container'] }
+        arguments:
+            $manager: '@Softspring\TranslationBundle\Manager\TranslationManagerInterface'
+            $listFilterForm: null
+            # '@Softspring\TranslationBundle\Form\Admin\TranslationListFilterFormInterface'
+            $createForm: null
+            # '@Softspring\TranslationBundle\Form\Admin\TranslationCreateFormInterface'
+            $updateForm: null
+            # '@Softspring\TranslationBundle\Form\Admin\TranslationUpdateFormInterface'
+            $deleteForm: null
+            # '@Softspring\TranslationBundle\Form\Admin\TranslationDeleteFormInterface'
+            $config:
+                entity_attribute: 'translation'
+                list:
+                    is_granted: 'ROLE_SFS_TRANSLATION_ADMIN_TRANSLATIONS_LIST'
+#                    view_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_LIST_VIEW
+                    view: '%sfs_translation.admin.translations.list_view%'
+                    view_page: '%sfs_translation.admin.translations.list_page_view%'
+                create:
+                    is_granted: 'ROLE_SFS_TRANSLATION_ADMIN_TRANSLATIONS_CREATE'
+#                    initialize_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_CREATE_INITIALIZE
+#                    form_valid_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_CREATE_FORM_VALID
+#                    success_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_CREATE_SUCCESS
+#                    form_invalid_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_CREATE_FORM_INVALID
+#                    view_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_CREATE_VIEW
+                    success_redirect_to: 'sfs_translation_admin_translations_list'
+                    view: '%sfs_translation.admin.translations.create_view%'
+                update:
+                    is_granted: 'ROLE_SFS_TRANSLATION_ADMIN_TRANSLATIONS_UPDATE'
+                    param_converter_key: 'id'
+#                    initialize_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_UPDATE_INITIALIZE
+#                    form_valid_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_UPDATE_FORM_VALID
+#                    success_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_UPDATE_SUCCESS
+#                    form_invalid_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_UPDATE_FORM_INVALID
+#                    view_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_UPDATE_VIEW
+                    success_redirect_to: 'sfs_translation_admin_translations_list'
+                    view: '%sfs_translation.admin.translations.update_view%'
+                delete:
+                    is_granted: 'ROLE_SFS_TRANSLATION_ADMIN_TRANSLATIONS_DELETE'
+                    param_converter_key: 'id'
+#                    initialize_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_DELETE_INITIALIZE
+#                    form_valid_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_DELETE_FORM_VALID
+#                    success_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_DELETE_SUCCESS
+#                    form_invalid_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_DELETE_FORM_INVALID
+#                    view_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_DELETE_VIEW
+                    success_redirect_to: 'sfs_translation_admin_translations_list'
+                    view: '%sfs_translation.admin.translations.delete_view%'
+                read:
+                    is_granted: 'ROLE_SFS_TRANSLATION_ADMIN_TRANSLATIONS_DETAILS'
+                    param_converter_key: 'id'
+#                    view_event_name: !php/const Softspring\TranslationBundle\SfsTranslationEvents::ADMIN_TRANSLATIONS_READ_VIEW
+                    view: '%sfs_translation.admin.translations.read_view%'

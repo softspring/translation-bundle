@@ -1,0 +1,20 @@
+{% trans_default_domain 'sfs_translation' %}
+{% extends '@SfsTranslation/admin_layout.html.twig' %}
+{% block title %}{{ 'admin_translations.delete.page_title'|trans }}{% endblock %}
+
+{% block breadcrums_content %}
+    {{ parent() }}
+    <li class="breadcrumb-item"><a href="{{ url('sfs_translation_admin_translations_list') }}">{{ 'admin_translations.list.breadcrumb'|trans }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ 'admin_translations.delete.breadcrumb'|trans({'%name%': translation.name|default(translation.id) }) }}</li>
+{% endblock breadcrums_content %}
+
+{% block content %}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_rest(form) }}
+        <div class="d-flex justify-content-end align-items-center">
+            <a href="{{ url('sfs_translation_admin_translations_list') }}" class="btn btn-outline-secondary ml-3">{{ 'admin_translations.delete.actions.cancel.button'|trans }}</a>
+            <input type="submit" value="{{ 'admin_translations.delete.actions.delete.button'|trans }}" class="btn btn-danger ml-3" />
+        </div>
+    {{ form_end(form) }}
+{% endblock content %}

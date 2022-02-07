@@ -1,0 +1,36 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+        bind:
+            $em: '@sfs_translation.entity_manager'
+
+    Softspring\TranslationBundle\Controller\:
+        resource: '../../src/Controller/*'
+        public: true
+
+#    Softspring\TranslationBundle\Form\:
+#        resource: '../../src/Form/*'
+
+    Softspring\TranslationBundle\Extractor\:
+        resource: '../../src/Extractor/*'
+
+    Softspring\TranslationBundle\Manager\:
+        resource: '../../src/Manager/*'
+
+    Softspring\TranslationBundle\EntityListener\TranslatableEntityListener:
+        tags:
+            -   name: 'doctrine.event_subscriber'
+
+    Softspring\TranslationBundle\Provider\DatabaseTranslationProviderFactory:
+        arguments:
+            $defaultLocale: '%kernel.default_locale%'
+        tags:
+            - { name: 'translation.provider_factory', alias: 'sfs' }
+
+    Softspring\TranslationBundle\Twig\Extension\:
+        resource: '../../src/Twig/Extension/*'
+        tags:
+            -   name: 'twig.extension'
+

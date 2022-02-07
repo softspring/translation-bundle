@@ -1,0 +1,19 @@
+sfs_translation_admin_translations_list:
+    controller: sfs_translation.admin.translation.controller::list
+    path: /
+
+#sfs_translation_admin_translations_create:
+#    controller: sfs_translation.admin.translation.controller::create
+#    path: /create
+#
+#sfs_translation_admin_translations_update:
+#    controller: sfs_translation.admin.translation.controller::update
+#    path: /{translation}/update
+#
+#sfs_translation_admin_translations_delete:
+#    controller: sfs_translation.admin.translation.controller::delete
+#    path: /{translation}/delete
+
+sfs_translation_admin_translations_read:
+    controller: sfs_translation.admin.translation.controller::read
+    path: /{translation}

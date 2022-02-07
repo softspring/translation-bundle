@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                      https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="Softspring\TranslationBundle\Model\TranslationMessage" table="translation_message">
+        <many-to-one field="translation" target-entity="Softspring\TranslationBundle\Model\TranslationInterface" inversed-by="translationMessages">
+            <join-column name="translation_id" referenced-column-name="translation_key" on-delete="CASCADE" />
+        </many-to-one>
+
+        <field name="locale" column="locale" type="string" nullable="false" length="5">
+            <options>
+                <option name="fixed">true</option>
+            </options>
+        </field>
+
+        <field name="message" column="message" type="text" nullable="false" />
+    </mapped-superclass>
+
+</doctrine-mapping>

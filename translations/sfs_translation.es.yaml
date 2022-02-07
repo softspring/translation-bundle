@@ -1,0 +1,54 @@
+admin:
+    global_breadcrumb: "Translations"
+
+admin_translations:
+    list:
+        page_title: "Traducciones"
+        title: "Traducciones"
+        breadcrumb: "Traducciones"
+        fields:
+            key.header: "Id"
+            domain.header: "Dominio"
+            default_locale.header: "Idioma"
+            default_message.header: "Texto"
+        actions.header: "Acciones"
+        actions:
+            create.button: "Nuevo traducción"
+            update.button: "Editar"
+            details.button: "Detalles"
+
+    create:
+        page_title: "Nuevo traducción"
+        title: "Nuevo traducción"
+        breadcrumb: "Nuevo traducción"
+        form:
+            key.label: "Id"
+            domain.label: "Dominio"
+        actions:
+            create.button: "Crear"
+            cancel.button: "Cancelar"
+
+    update:
+        page_title: "Editar traducción"
+        title: "Editar traducción"
+        breadcrumb: "Editar %name%"
+        form:
+            key.label: "ID"
+            domain.label: "Dominio"
+        actions:
+            update.button: "Guardar cambios"
+            cancel.button: "Cancelar"
+            delete.button: "Eliminar"
+
+    delete:
+        page_title: "Eliminar traducción"
+        title: "Eliminar traducción"
+        breadcrumb: "Eliminar %name%"
+        actions:
+            delete.button: "Eliminar"
+            cancel.button: "Cancelar"
+
+    read:
+        page_title: "Traducción"
+        title: "Traducción"
+        breadcrumb: "%name%"
