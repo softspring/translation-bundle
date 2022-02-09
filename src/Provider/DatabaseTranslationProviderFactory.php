@@ -1,13 +1,14 @@
 <?php
 
 namespace Softspring\TranslationBundle\Provider;
+
 use Softspring\TranslationBundle\Manager\TranslationManagerInterface;
 use Symfony\Component\Translation\Exception\UnsupportedSchemeException;
 use Symfony\Component\Translation\Provider\AbstractProviderFactory;
 use Symfony\Component\Translation\Provider\Dsn;
 
 /**
- * Class TranslationProviderFactory
+ * Class TranslationProviderFactory.
  */
 final class DatabaseTranslationProviderFactory extends AbstractProviderFactory
 {
@@ -21,10 +22,6 @@ final class DatabaseTranslationProviderFactory extends AbstractProviderFactory
      */
     protected $defaultLocale;
 
-    /**
-     * @param TranslationManagerInterface $translationManager
-     * @param string                      $defaultLocale
-     */
     public function __construct(TranslationManagerInterface $translationManager, string $defaultLocale)
     {
         $this->translationManager = $translationManager;

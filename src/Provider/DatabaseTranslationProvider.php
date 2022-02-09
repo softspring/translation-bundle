@@ -19,10 +19,6 @@ class DatabaseTranslationProvider implements ProviderInterface
      */
     protected $defaultLocale;
 
-    /**
-     * @param TranslationManagerInterface $translationManager
-     * @param string                      $defaultLocale
-     */
     public function __construct(TranslationManagerInterface $translationManager, string $defaultLocale)
     {
         $this->translationManager = $translationManager;

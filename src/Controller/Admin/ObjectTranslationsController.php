@@ -11,9 +11,6 @@ class ObjectTranslationsController extends AbstractController
 {
     protected ObjectTranslationExtractor $objectTranslationExtractor;
 
-    /**
-     * @param ObjectTranslationExtractor $objectTranslationExtractor
-     */
     public function __construct(ObjectTranslationExtractor $objectTranslationExtractor)
     {
         $this->objectTranslationExtractor = $objectTranslationExtractor;

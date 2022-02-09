@@ -12,19 +12,14 @@ use Softspring\TranslationBundle\Configuration\TranslationsHtml;
 use Softspring\TranslationBundle\Manager\TranslationManagerInterface;
 use Softspring\TranslationBundle\Model\TranslationInterface;
 use Softspring\TranslationBundle\Model\TranslationMessageInterface;
-use Softspring\TranslationBundle\Utils\Domain;
 use Softspring\TranslationBundle\Utils\Html;
 use Softspring\TranslationBundle\Utils\Keys;
-use Symfony\Component\DomCrawler\Crawler;
 
 class ObjectTranslationExtractor
 {
     protected TranslationManagerInterface $translationManager;
     protected AnnotationReader $annotationReader;
 
-    /**
-     * @param TranslationManagerInterface $translationManager
-     */
     public function __construct(TranslationManagerInterface $translationManager)
     {
         $this->translationManager = $translationManager;
@@ -82,7 +77,7 @@ class ObjectTranslationExtractor
     {
         $translations = [];
 
-        $value = $reflectionProperty->getDeclaringClass()->getMethod('get' . ucfirst($reflectionProperty->getName()))->invoke($entity);
+        $value = $reflectionProperty->getDeclaringClass()->getMethod('get'.ucfirst($reflectionProperty->getName()))->invoke($entity);
 
         if ($value instanceof Collection) {
             if ($recursive) {
@@ -103,13 +98,13 @@ class ObjectTranslationExtractor
     {
         $translations = [];
 
-        $value = $reflectionProperty->getDeclaringClass()->getMethod('get' . ucfirst($reflectionProperty->getName()))->invoke($entity);
+        $value = $reflectionProperty->getDeclaringClass()->getMethod('get'.ucfirst($reflectionProperty->getName()))->invoke($entity);
 
         $embeddedReflectionClass = new \ReflectionClass($value);
 
         foreach ($embeddedReflectionClass->getProperties() as $embeddedReflectionProperty) {
             if ($propertyAnnotation = $this->annotationReader->getPropertyAnnotation($embeddedReflectionProperty, Translation::class)) {
-                $embeddedValue = $embeddedReflectionClass->getMethod('get' . ucfirst($embeddedReflectionProperty->getName()))->invoke($value);
+                $embeddedValue = $embeddedReflectionClass->getMethod('get'.ucfirst($embeddedReflectionProperty->getName()))->invoke($value);
 
                 if (is_string($embeddedValue)) {
                     $translations[Keys::getTranslationEmbeddedKey($entity, $reflectionProperty->getName(), $embeddedReflectionProperty->getName())] = $embeddedValue;
@@ -122,7 +117,7 @@ class ObjectTranslationExtractor
 
     public function _extractHtmlTranslations(TranslationsHtml $annotation, object $entity, \ReflectionProperty $reflectionProperty): array
     {
-        $value = $reflectionProperty->getDeclaringClass()->getMethod('get' . ucfirst($reflectionProperty->getName()))->invoke($entity);
+        $value = $reflectionProperty->getDeclaringClass()->getMethod('get'.ucfirst($reflectionProperty->getName()))->invoke($entity);
 
         return Html::getTranslations($value, $entity, $reflectionProperty->getName());
     }

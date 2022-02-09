@@ -22,12 +22,6 @@ class TranslationExtension extends AbstractExtension
     protected ObjectTranslationExtractor $objectTranslationExtractor;
     protected RequestStack $requestStack;
 
-    /**
-     * @param TranslationManagerInterface        $translationManager
-     * @param TranslationMessageManagerInterface $translationMessageManager
-     * @param ObjectTranslationExtractor         $objectTranslationExtractor
-     * @param RequestStack                       $requestStack
-     */
     public function __construct(TranslationManagerInterface $translationManager, TranslationMessageManagerInterface $translationMessageManager, ObjectTranslationExtractor $objectTranslationExtractor, RequestStack $requestStack)
     {
         $this->translationManager = $translationManager;
@@ -56,7 +50,7 @@ class TranslationExtension extends AbstractExtension
     {
         $locale = $this->requestStack->getCurrentRequest()->getLocale();
 
-        $translation = $this->translationManager->getTranslation(Keys::getTranslationKey($entity, $property), Domain::createFromClass($entity) , $locale);
+        $translation = $this->translationManager->getTranslation(Keys::getTranslationKey($entity, $property), Domain::createFromClass($entity), $locale);
 
         return $translation instanceof TranslationMessageInterface ? $translation->getMessage() : '';
     }
@@ -65,7 +59,7 @@ class TranslationExtension extends AbstractExtension
     {
         $locale = $this->requestStack->getCurrentRequest()->getLocale();
 
-        $translation = $this->translationManager->getTranslation(Keys::getTranslationEmbeddedKey($entity, $embeded, $property), Domain::createFromClass($entity) , $locale);
+        $translation = $this->translationManager->getTranslation(Keys::getTranslationEmbeddedKey($entity, $embeded, $property), Domain::createFromClass($entity), $locale);
 
         return $translation instanceof TranslationMessageInterface ? $translation->getMessage() : '';
     }
@@ -80,17 +74,17 @@ class TranslationExtension extends AbstractExtension
         $crawler = new Crawler($doc);
 
         foreach ($translations as $key => $defaultValue) {
-            if (! ($translation = $this->translationManager->getTranslation($key, Domain::createFromClass($entity) , $locale))) {
+            if (!($translation = $this->translationManager->getTranslation($key, Domain::createFromClass($entity), $locale))) {
                 continue;
             }
 
             $keyParts = explode('.', $key);
             $transId = array_pop($keyParts);
-            $crawler-> filter("trans#$transId")->each(function(Crawler $crawler) use($doc, $translation) {
+            $crawler->filter("trans#$transId")->each(function (Crawler $crawler) use ($doc, $translation) {
                 $message = $translation->getMessage();
-                foreach($crawler as $node) {
+                foreach ($crawler as $node) {
                     $node->parentNode->replaceChild($doc->createTextNode($message), $node);
-                  }
+                }
             });
         }
 

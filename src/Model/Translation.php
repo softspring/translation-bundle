@@ -23,49 +23,31 @@ class Translation implements TranslationInterface
         $this->translationMessages = new ArrayCollection();
     }
 
-    /**
-     * @return string|null
-     */
     public function getKey(): ?string
     {
         return $this->key;
     }
 
-    /**
-     * @param string|null $key
-     */
     public function setKey(?string $key): void
     {
         $this->key = $key;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDomain(): ?string
     {
         return $this->domain;
     }
 
-    /**
-     * @param string|null $domain
-     */
     public function setDomain(?string $domain): void
     {
         $this->domain = $domain;
     }
 
-    /**
-     * @return TranslationMessageInterface|null
-     */
     public function getDefaultMessage(): ?TranslationMessageInterface
     {
         return $this->defaultMessage;
     }
 
-    /**
-     * @param TranslationMessageInterface|null $defaultMessage
-     */
     public function setDefaultMessage(?TranslationMessageInterface $defaultMessage): void
     {
         $this->defaultMessage = $defaultMessage;

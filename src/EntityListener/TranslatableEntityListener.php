@@ -19,11 +19,6 @@ class TranslatableEntityListener implements EventSubscriberInterface
 
     protected ObjectTranslationExtractor $objectTranslationExtractor;
 
-    /**
-     * @param TranslationManagerInterface        $translationManager
-     * @param TranslationMessageManagerInterface $translationMessageManager
-     * @param ObjectTranslationExtractor         $objectTranslationExtractor
-     */
     public function __construct(TranslationManagerInterface $translationManager, TranslationMessageManagerInterface $translationMessageManager, ObjectTranslationExtractor $objectTranslationExtractor)
     {
         $this->translationManager = $translationManager;
@@ -66,6 +61,4 @@ class TranslatableEntityListener implements EventSubscriberInterface
 
         $this->translationManager->getEntityManager()->flush();
     }
-
-
 }

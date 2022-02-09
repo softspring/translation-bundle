@@ -8,5 +8,4 @@ namespace Softspring\TranslationBundle\Configuration;
  */
 class TranslationsHtml implements TranslationAnnotationInterface
 {
-
 }

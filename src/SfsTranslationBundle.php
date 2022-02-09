@@ -29,9 +29,7 @@ class SfsTranslationBundle extends Bundle
     }
 
     /**
-     * @param ContainerBuilder $container
-     * @param array            $mappings
-     * @param string|bool      $enablingParameter
+     * @param string|bool $enablingParameter
      */
     private function addRegisterMappingsPass(ContainerBuilder $container, array $mappings, $enablingParameter = false)
     {
