@@ -30,7 +30,7 @@ class TranslatableEntityListener implements EventSubscriberInterface
     {
         return [
             Events::postPersist,
-            Events::postRemove,
+            // Events::postRemove, TODO implement postRemove
             Events::postUpdate,
         ];
     }
