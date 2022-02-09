@@ -22,10 +22,10 @@ class Keys
         if ($translatableAnnotation->prefix) {
             $prefix = $translatableAnnotation->prefix;
         } else {
-            $prefix = Domain::toSnakeCase($reflectionClass->getShortName()) . '_' ;
+            $prefix = Domain::toSnakeCase($reflectionClass->getShortName()).'_';
         }
 
-        return $prefix . $object->getId();
+        return $prefix.$object->getId();
     }
 
     public static function getTranslationKey(object $object, string $field): string
@@ -35,13 +35,13 @@ class Keys
 
     public static function getTranslationPart(object $object, string $part): string
     {
-        return self::getObjectPrefix($object) . '.' . Domain::toSnakeCase($part);
+        return self::getObjectPrefix($object).'.'.Domain::toSnakeCase($part);
     }
 
     public static function getTranslationEmbeddedKey(object $object, string $embeddedProperty, string $field): string
     {
         $prefix = self::getTranslationKey($object, $embeddedProperty);
 
-        return $prefix . '.' . Domain::toSnakeCase($field);
+        return $prefix.'.'.Domain::toSnakeCase($field);
     }
 }

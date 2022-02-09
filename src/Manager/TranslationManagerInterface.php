@@ -28,8 +28,5 @@ interface TranslationManagerInterface extends CrudlEntityManagerInterface
 
     public function getTranslation(string $key, string $domain, string $locale): ?TranslationMessageInterface;
 
-    /**
-     * @return EntityManagerInterface
-     */
-     public function getEntityManager(): EntityManagerInterface;
+    public function getEntityManager(): EntityManagerInterface;
 }

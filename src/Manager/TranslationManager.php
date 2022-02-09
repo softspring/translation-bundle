@@ -21,10 +21,6 @@ class TranslationManager implements TranslationManagerInterface
      */
     protected $messageManager;
 
-    /**
-     * @param EntityManagerInterface             $em
-     * @param TranslationMessageManagerInterface $messageManager
-     */
     public function __construct(EntityManagerInterface $em, TranslationMessageManagerInterface $messageManager)
     {
         $this->em = $em;
@@ -38,7 +34,7 @@ class TranslationManager implements TranslationManagerInterface
 
     public function saveTranslation(string $key, string $domain, string $locale, string $text, bool $isDefaultLocale = true, bool $flush = true)
     {
-        $translation = $this->getRepository()->findOneBy(['key'=>$key, 'domain' => $domain]);
+        $translation = $this->getRepository()->findOneBy(['key' => $key, 'domain' => $domain]);
 
         if (!$translation) {
             $translation = $this->createEntity();
@@ -64,12 +60,12 @@ class TranslationManager implements TranslationManagerInterface
     public function getTranslation(string $key, string $domain, string $locale): ?TranslationMessageInterface
     {
         /** @var TranslationInterface $translation */
-        $translation = $this->getRepository()->findOneBy(['key'=>$key, 'domain' => $domain]);
+        $translation = $this->getRepository()->findOneBy(['key' => $key, 'domain' => $domain]);
 
         if (!$translation) {
             return null;
         }
 
-        return $translation->getTranslationMessageForLocale($locale) ?: $translation->getDefaultMessage() ;
+        return $translation->getTranslationMessageForLocale($locale) ?: $translation->getDefaultMessage();
     }
 }

@@ -2,8 +2,6 @@
 
 namespace Softspring\TranslationBundle\Utils;
 
-use Doctrine\Common\Annotations\AnnotationReader;
-
 class Domain
 {
     public static function createFromClassName(string $className): string
@@ -14,7 +12,7 @@ class Domain
             $className = $reflectionClass->getParentClass()->getName();
         }
 
-        return self::toSnakeCase(str_replace(['/','\\'], '__', $className));
+        return self::toSnakeCase(str_replace(['/', '\\'], '__', $className));
     }
 
     public static function createFromClass(object $object): string
