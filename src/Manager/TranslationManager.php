@@ -11,10 +11,7 @@ class TranslationManager implements TranslationManagerInterface
 {
     use CrudlEntityManagerTrait;
 
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
+    protected EntityManagerInterface $em;
 
     /**
      * @var TranslationMessageManagerInterface
