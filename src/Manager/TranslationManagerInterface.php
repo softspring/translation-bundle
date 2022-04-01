@@ -3,7 +3,7 @@
 namespace Softspring\TranslationBundle\Manager;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Softspring\CrudlBundle\Manager\CrudlEntityManagerInterface;
+use Softspring\Component\CrudlController\Manager\CrudlEntityManagerInterface;
 use Softspring\TranslationBundle\Model\TranslationInterface;
 use Softspring\TranslationBundle\Model\TranslationMessageInterface;
 
